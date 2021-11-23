@@ -343,6 +343,8 @@ public class MainActivityWIF extends AppCompatActivity {
         }
 
         void getServerCellInfoOnOlderDevices() {
+
+            Log.d("CellGeneralInfo",serverCellInfo.toString());
             if (ActivityCompat.checkSelfPermission(MainActivityWIF.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                 // TODO: Consider calling
                 //    ActivityCompat#requestPermissions
@@ -363,7 +365,7 @@ public class MainActivityWIF extends AppCompatActivity {
  
         void updateHistoryCellList(CellGeneralInfo serverinfo)
         {
-            Log.d("CellGeneralInfo",serverinfo.toString());
+
             CellGeneralInfo newcellInfo = (CellGeneralInfo)serverinfo.clone();
             HistoryServerCellList.add(newcellInfo);
         }
