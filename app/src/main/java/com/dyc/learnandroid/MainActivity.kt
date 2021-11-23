@@ -1,9 +1,14 @@
 package com.dyc.learnandroid
 
+import android.Manifest
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.os.Bundle
+import android.telephony.PhoneStateListener
+import android.telephony.SignalStrength
+import android.telephony.TelephonyManager
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -12,11 +17,13 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.dyc.learnandroid.coroutine.CoroutineActivity
+import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -37,6 +44,7 @@ class MainActivity : AppCompatActivity() {
 
         viewModel?.fetchDocs()
 
+
         recyclerView = findViewById(R.id.funRecycleView)
         recyclerView.layoutManager = LinearLayoutManager(this)
 
@@ -47,6 +55,16 @@ class MainActivity : AppCompatActivity() {
 
         recyclerView.addItemDecoration(dividerDecoration)
         recyclerView.adapter = AdapterFunction(this)
+
+
+        val telephonyManager = getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager
+        telephonyManager.listen( MyPhoneMessage(),PhoneStateListener.LISTEN_SIGNAL_STRENGTHS)
+
+            val rquests =
+            arrayOf(Manifest.permission.READ_PHONE_STATE,Manifest.permission.ACCESS_FINE_LOCATION,Manifest.permission.READ_PRECISE_PHONE_STATE)
+           requestPermissions( rquests,200)
+
+
 
     }
 
@@ -82,10 +100,20 @@ class MainActivity : AppCompatActivity() {
             FunctionItem("协程", CoroutineActivity::class.java),
             FunctionItem("动画", CoroutineActivity::class.java),
             FunctionItem("控件", CoroutineActivity::class.java),
+            FunctionItem("信号", MainActivityWIF::class.java),
         )
     }
 
 
     class FunctionViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
+
+
+    class MyPhoneMessage : PhoneStateListener() {
+
+        override fun onSignalStrengthsChanged(signalStrength: SignalStrength?) {
+//            Log.d("手机信号",signalStrength.toString())
+            super.onSignalStrengthsChanged(signalStrength)
+        }
+    }
 
 }
