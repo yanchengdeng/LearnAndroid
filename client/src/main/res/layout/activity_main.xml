@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+   <TextView
+       android:id="@+id/bindService"
+       android:text="绑定服务"
+       app:layout_constraintLeft_toLeftOf="parent"
+       app:layout_constraintTop_toTopOf="parent"
+       app:layout_constraintRight_toRightOf="parent"
+       android:layout_width="wrap_content"
+       android:gravity="center"
+       android:layout_height="100dp"/>
+
+    <TextView
+        android:id="@+id/unBindService"
+        android:text="绑定服务"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bindService"
+        android:layout_width="wrap_content"
+        android:gravity="center"
+        android:layout_height="100dp"/>
+
+
+
+
+    <TextView
+        android:id="@+id/doServiceAction"
+        android:text="执行结果："
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/unBindService"
+        android:layout_width="wrap_content"
+        android:gravity="center"
+        android:layout_height="100dp"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

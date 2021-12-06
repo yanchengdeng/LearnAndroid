@@ -8,6 +8,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
 
+    <uses-permission android:name="android.permission.LOCAL_MAC_ADDRESS" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
@@ -38,6 +39,12 @@
         </activity>
 
         <activity android:name=".MainActivityWIF"/>
+
+        <service android:name=".MyService" android:enabled="true" android:exported="true">
+            <intent-filter>
+                <action android:name="com.dyc.learnandroid.MyService"/>
+            </intent-filter>
+        </service>
     </application>
 
 </manifest>
